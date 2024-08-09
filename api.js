@@ -60,7 +60,7 @@ app.get("/moviesapi/retrive/byid/:id", async (req, res) => {
     }
 })
 
-app.get("/moviesapi/retrive/all", async (req, res) =>{
+app.get("/moviesapi/retriveall", async (req, res) =>{
     try{
         const moviesRetriveAll = await Movies.find();
         res.status(200).json(moviesRetriveAll);
