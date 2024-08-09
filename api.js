@@ -1,6 +1,7 @@
 const express =require('express');
 const mongoose = require('mongoose');
 const Movies = require('./models/movie.model.js');
+const movieRoutes = require("./routes/movieRoutes.js");
 const app = express();
 
 app.use(express.json());
@@ -15,17 +16,8 @@ app.get("/", (req, res) => {
     }
 })
 
-app.get("/moviesapi/retrive/moviename/:id", async (req, res) => {
-    try{
-        const { id } = req.params;
-        const movieNameId = await Movies.findById(id);
-        const movieName = movieNameId['name'];
-        res.status(200).send(movieName);
-    }
-    catch{
-        res.send(400).json({"message" : "Movie Not Found"})
-    }
-})
+app.use('/moviesapi', movieRoutes);
+
 
 app.get('/moviesapi/retrive/:genre', async (req, res) => {
     try {
