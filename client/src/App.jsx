@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Home from './pages/home';
+import Main from './pages/main';
+import Navbar from './components/navbar';
+import Login from './pages/login';
+import Signup from './pages/signup';
 
 const App = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const dataFetch = async () => {
-      const dataReceived = await fetch('http://localhost:5000/moviesapi/retriveall');
-      const dataJson = await dataReceived.json();
-      setData(dataJson);
-    }
-    dataFetch();
-  }, [])
   return (
-    <main>
-      {
-        data.map((item) => (
-          <div key={item._id}>{item.name} {item.rating}</div>
-        ))
-      }
-    </main>
-  )
-}
+    <Router>
+      <Navbar/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<Signup/>} />
+        <Route path="*" element={<h2>404 Not Found</h2>} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;

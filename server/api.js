@@ -1,15 +1,16 @@
 const express =require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 const Movies = require('./models/movie.model.js');
 const movieRoutes = require("./routes/movieRoutes.js");
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 app.use(express.urlencoded({extended: false}))
 const JWT_SECRET = '84b53584844c8bb05716eb3553b707c8fced82a2024ad510fcac3d010f2b4172';
 const users = [];
@@ -23,6 +24,7 @@ const authenticateJWT = (req, res, next) => {
     });
   };
 
+app.use('/moviesapi', movieRoutes);
   
 app.get("/", (req, res) => {
     try{
@@ -66,7 +68,6 @@ app.post("/login" , async (req, res) => {
 })
 
 
-app.use('/moviesapi', movieRoutes);
 
 mongoose.connect("mongodb+srv://adithyaps929:adi123@apidb.axg7o.mongodb.net/?retryWrites=true&w=majority&appName=ApiDB")
 .then(() => {
