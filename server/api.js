@@ -14,6 +14,8 @@ app.use(cors());
 app.use(express.urlencoded({extended: false}))
 const JWT_SECRET = '84b53584844c8bb05716eb3553b707c8fced82a2024ad510fcac3d010f2b4172';
 const users = [];
+
+// middleware applied in the route (protected)
 const authenticateJWT = (req, res, next) => {
     const token = req.header('Authorization')?.split(' ')[1];
     if (token == null) return res.sendStatus(401);
@@ -37,7 +39,8 @@ app.get("/", (req, res) => {
 
 // user auth
 
-app.get('/protected', authenticateJWT, (req, res) => {
+// example route created for learning not in use.
+app.get('/main', authenticateJWT, (req, res) => {
     res.send('This is a protected route');
   });
 

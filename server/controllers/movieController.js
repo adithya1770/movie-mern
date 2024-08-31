@@ -23,7 +23,7 @@ getMovieByGenre = async (req, res) => {
       }
 }
 
-addMovies = async ( req, res) => { 
+addMovie = async ( req, res) => { 
     try{
         const moviesAdd = await Movies.create(req.body);
         res.status(200).json(moviesAdd)
@@ -76,4 +76,4 @@ updateMovie = async (req, res) => {
     }
 }
 
-module.exports = { getMovieNameById, getMovieByGenre, addMovies, getMovieById, getAllMovies, deleteMovie, updateMovie };
+module.exports = { getMovieNameById, getMovieByGenre, addMovie, getMovieById, getAllMovies, deleteMovie, updateMovie };

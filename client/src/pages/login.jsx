@@ -1,12 +1,14 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext';
 
 const Login = () => {
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
     const [msg, setMsg] = useState('');
     const navigate = useNavigate();
+    const { setToken } = useContext(AuthContext);
     const logIn = async () => {
         try{
           const sendData = await fetch('http://localhost:5000/login', {
@@ -15,7 +17,11 @@ const Login = () => {
               'Content-Type': 'application/json'
             },
             body:JSON.stringify({username: user, password: pass})
-          }).then((response) => response.json()).then((data)=>setMsg(data.message))
+          })
+          const data = await sendData.json();
+          setMsg(data.msg);
+          setToken(data.token);
+          console.log(data.token)
           navigate('/main');
         }
         catch{
