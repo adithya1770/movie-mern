@@ -14,6 +14,7 @@ router.get('/retriveall', movieController.getAllMovies);
 
 // other routes 
 
+router.delete('/deletename', movieController.deleteMovieName)
 router.delete('/delete/:id', movieController.deleteMovie);
 router.post('/add', movieController.addMovie);
 router.post('/update/:id', movieController.updateMovie);

@@ -65,6 +65,17 @@ deleteMovie = async (req, res) => {
     }
 }
 
+deleteMovieName = async (req, res) => {
+    try{
+        const { name } = req.body;
+        const result = await Movies.findOneAndDelete({ name });
+        res.status(200).json("Successfully Removed")
+    }
+    catch{
+        res.status(400).json({"message" : "Couldn't Delete Item"})
+    }
+}
+
 updateMovie = async (req, res) => {
     try{
         const { id } = req.params;
@@ -76,4 +87,4 @@ updateMovie = async (req, res) => {
     }
 }
 
-module.exports = { getMovieNameById, getMovieByGenre, addMovie, getMovieById, getAllMovies, deleteMovie, updateMovie };
+module.exports = { getMovieNameById, getMovieByGenre, addMovie, getMovieById, getAllMovies, deleteMovie, updateMovie, deleteMovieName };
