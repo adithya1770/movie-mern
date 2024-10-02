@@ -1,6 +1,6 @@
 # Movies Info API
 
-A simple Movies Info API built using Express.js, MongoDB, and React.js. This project allows users to add, delete, view, and update movie information such as name, rating, and genre through a graphical user interface (GUI).
+A simple Movies Info API built using Express.js, MongoDB, Material UI and React.js. This project allows users to add, delete, view, and update movie information such as name, rating, and genre through a graphical user interface (GUI).
 
 ## Features
 
