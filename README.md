@@ -37,3 +37,9 @@ Make sure you have the following installed:
    ```bash
    git clone https://github.com/your-username/movies-info-api.git
    cd movies-info-api
+
+
+# Pictures
+
+<img src="./assets/inner.png"/>
+<img src="./assets/login.png"/>
